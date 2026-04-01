@@ -1,0 +1,31 @@
+import pygame
+
+# Initialize the engine
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
+running = True
+
+# Load your character image
+player_img = pygame.image.load('player.png')
+player_pos = [400, 300]
+
+# The Game Loop
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Logic: Move character with arrow keys
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]: player_pos[0] -= 5
+    if keys[pygame.K_RIGHT]: player_pos[0] += 5
+
+    # Drawing
+    screen.fill((0, 0, 0)) # Clear screen with black
+    screen.blit(player_img, player_pos) # Draw the character
+    pygame.display.flip() # Update the display
+
+    clock.tick(60) # Limit to 60 Frames Per Second
+
+pygame.quit()
